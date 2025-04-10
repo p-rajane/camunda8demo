@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "Enter Route",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_14hdfdt",
+        "columns": null
+      },
+      "id": "Field_1izo0p4",
+      "key": "route"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1sqmwjv",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.5.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.26.0"
+  },
+  "schemaVersion": 16
+}
