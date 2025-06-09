@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@Deployment(resources = {"model.bpmn", "callActivity.bpmn", "kafka-connector.bpmn", "emailConnector.bpmn"})
+@Deployment(resources = {"model.bpmn", "callActivity.bpmn", "kafka-connector.bpmn", "emailConnector.bpmn", "errorEvent.bpmn"})
 public class Camunda8demoApplication {
 
   public static void main(String[] args) {
