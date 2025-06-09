@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MinorWorker {
 
-	@JobWorker(type = "minorWorker")
-	public void minorWorker(final JobClient client, final ActivatedJob jo) {
-		System.out.print("Minor Worker");
-	}
+  @JobWorker(type = "minorWorker")
+  public void minorWorker(final JobClient client, final ActivatedJob jo) {
+    System.out.print("Minor Worker");
+  }
 }

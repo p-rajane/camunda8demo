@@ -5,13 +5,11 @@ import io.camunda.zeebe.client.api.worker.JobClient;
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 @Component
 public class AdultWorker {
 
-	@JobWorker(type = "adultWorker")
-	public void adultWorker(final JobClient client, final ActivatedJob jo) {
-		System.out.print("Adult Worker");
-	}
+  @JobWorker(type = "adultWorker")
+  public void adultWorker(final JobClient client, final ActivatedJob jo) {
+    System.out.print("Adult Worker");
+  }
 }
