@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1woz9h2" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.31.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <bpmn:collaboration id="Collaboration_1byis9g">
+    <bpmn:participant id="Participant_1k558u0" name="Compensation Event" processRef="CompensationProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="CompensationProcess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_045m7dq</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_1lzivh6" name="Seach">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="searchWorker" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_045m7dq</bpmn:incoming>
+      <bpmn:outgoing>Flow_1wxnd7n</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_045m7dq" sourceRef="StartEvent_1" targetRef="Activity_1lzivh6" />
+    <bpmn:sequenceFlow id="Flow_1wxnd7n" sourceRef="Activity_1lzivh6" targetRef="Activity_0w5x9s8" />
+    <bpmn:sequenceFlow id="Flow_1b68gf7" sourceRef="Event_0vtcnzv" targetRef="Event_05qhogg" />
+    <bpmn:sequenceFlow id="Flow_1iowla5" sourceRef="Activity_0ydrcwx" targetRef="Event_0vtcnzv" />
+    <bpmn:boundaryEvent id="Event_05zp3xs" attachedToRef="Activity_1lzivh6">
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_0hapnyk" />
+    </bpmn:boundaryEvent>
+    <bpmn:task id="cancelTask" name="Cancel Search" isForCompensation="true">
+      <bpmn:extensionElements>
+        <zeebe:executionListeners>
+          <zeebe:executionListener eventType="start" type="cancelSearchListenerWorker" />
+        </zeebe:executionListeners>
+      </bpmn:extensionElements>
+    </bpmn:task>
+    <bpmn:endEvent id="Event_05qhogg">
+      <bpmn:incoming>Flow_1b68gf7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateThrowEvent id="Event_0vtcnzv">
+      <bpmn:incoming>Flow_1iowla5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1b68gf7</bpmn:outgoing>
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_0rhgyvv" activityRef="Activity_1lzivh6" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:userTask id="Activity_0ydrcwx" name="Wait for user">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1qcc5ec</bpmn:incoming>
+      <bpmn:outgoing>Flow_1iowla5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1qcc5ec" sourceRef="Activity_0w5x9s8" targetRef="Activity_0ydrcwx" />
+    <bpmn:task id="Activity_0fr0y6o" name="Cancel Booking" isForCompensation="true">
+      <bpmn:extensionElements>
+        <zeebe:executionListeners>
+          <zeebe:executionListener eventType="start" type="cancelBookingListenerWorker" />
+        </zeebe:executionListeners>
+      </bpmn:extensionElements>
+    </bpmn:task>
+    <bpmn:serviceTask id="Activity_0w5x9s8" name="Book">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="bookingWorker" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1wxnd7n</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qcc5ec</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:boundaryEvent id="Event_0zbof6k" attachedToRef="Activity_0w5x9s8">
+      <bpmn:compensateEventDefinition id="CompensateEventDefinition_1no3bah" />
+    </bpmn:boundaryEvent>
+    <bpmn:association id="Association_16j4v1x" associationDirection="One" sourceRef="Event_05zp3xs" targetRef="cancelTask" />
+    <bpmn:association id="Association_0d88shh" associationDirection="One" sourceRef="Event_0zbof6k" targetRef="Activity_0fr0y6o" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1byis9g">
+      <bpmndi:BPMNShape id="Participant_1k558u0_di" bpmnElement="Participant_1k558u0" isHorizontal="true">
+        <dc:Bounds x="130" y="120" width="860" height="280" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="182" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fqog1u_di" bpmnElement="Activity_1lzivh6">
+        <dc:Bounds x="270" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1f0jrks_di" bpmnElement="cancelTask">
+        <dc:Bounds x="270" y="300" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_16hlowl_di" bpmnElement="Event_05qhogg">
+        <dc:Bounds x="932" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_12unwf2_di" bpmnElement="Event_0vtcnzv">
+        <dc:Bounds x="832" y="162" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ilwp22_di" bpmnElement="Activity_0ydrcwx">
+        <dc:Bounds x="660" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fr0y6o_di" bpmnElement="Activity_0fr0y6o">
+        <dc:Bounds x="460" y="300" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0tote8q_di" bpmnElement="Activity_0w5x9s8">
+        <dc:Bounds x="460" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_16j4v1x_di" bpmnElement="Association_16j4v1x">
+        <di:waypoint x="320" y="238" />
+        <di:waypoint x="320" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0d88shh_di" bpmnElement="Association_0d88shh">
+        <di:waypoint x="510" y="238" />
+        <di:waypoint x="510" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0lyagu1_di" bpmnElement="Event_05zp3xs">
+        <dc:Bounds x="302" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1auilsz_di" bpmnElement="Event_0zbof6k">
+        <dc:Bounds x="492" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_045m7dq_di" bpmnElement="Flow_045m7dq">
+        <di:waypoint x="218" y="180" />
+        <di:waypoint x="270" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1wxnd7n_di" bpmnElement="Flow_1wxnd7n">
+        <di:waypoint x="370" y="180" />
+        <di:waypoint x="460" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1b68gf7_di" bpmnElement="Flow_1b68gf7">
+        <di:waypoint x="868" y="180" />
+        <di:waypoint x="932" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iowla5_di" bpmnElement="Flow_1iowla5">
+        <di:waypoint x="760" y="180" />
+        <di:waypoint x="832" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qcc5ec_di" bpmnElement="Flow_1qcc5ec">
+        <di:waypoint x="560" y="180" />
+        <di:waypoint x="660" y="180" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
