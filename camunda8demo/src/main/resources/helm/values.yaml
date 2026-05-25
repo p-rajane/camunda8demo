@@ -1,0 +1,110 @@
+#Expose camunda-elasticsearch service using port forward
+#kubectl port-forward svc/camunda-elasticsearch-master-hl 9200:9200
+#kubectl port-forward svc/camunda-elasticsearch 9200:9200
+#wget -qO- http://camunda-elasticsearch.default.svc.cluster.local:9200/
+#Global configuration
+global:
+  elasticsearch:
+    enabled: true
+    url:
+      protocol: http
+      host: camunda-elasticsearch
+      port: 9200
+
+  identity:
+    auth:
+      enabled: false
+
+#Elasticsearch configuration
+elasticsearch:
+  enabled: true
+  image:
+    tag: "8.17.4"
+  master:
+    replicaCount: 1
+    persistence:
+      size: 3Gi
+
+#Operate configuration
+operate:
+  enabled: true
+  image:
+    repository: camunda/operate
+    tag: 8.7.21
+    
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 180
+  migration:
+    enabled: false
+
+#Zeebe configuration
+zeebe:
+  enabled: true
+  clusterSize: 1
+  partitionCount: 1
+  replicationFactor: 1
+  pvcSize: 2Gi
+  resources:
+    requests:
+      cpu: 400m
+      memory: 800Mi
+    limits:
+      cpu: 400m
+      memory: 800Mi
+  image:
+    repository: camunda/zeebe
+    tag: 8.7.21
+
+#Zeebe gateway configuration
+zeebeGateway:
+  enabled: true
+  replicas: 1
+  resources:
+    requests:
+      cpu: 400m
+      memory: 800Mi
+    limits:
+      cpu: 400m
+      memory: 800Mi
+  image:
+    repository: camunda/zeebe
+    tag: 8.7.21
+
+identity:
+  enabled: false
+
+identityKeycloak:
+  enabled: false
+
+connectors:
+  enabled: false
+  inbound:
+    mode: disabled
+
+optimize:
+  enabled: true
+
+  env:
+    - name: CAMUNDA_OPTIMIZE_IDENTITY_ENABLED
+      value: "false"
+
+    - name: CAMUNDA_OPTIMIZE_SECURITY_ENABLED
+      value: "false"
+
+    - name: CAMUNDA_OPTIMIZE_SECURITY_AUTH_PROVIDER
+      value: "none"
+
+    - name: CAMUNDA_OPTIMIZE_OAUTH_ENABLED
+      value: "false"
+
+    - name: SPRING_PROFILES_ACTIVE
+      value: "ccsm"
+
+  configuration: |-
+    camunda:
+      identity:
+        enabled: false
+
+tasklist:
+  enabled: true
