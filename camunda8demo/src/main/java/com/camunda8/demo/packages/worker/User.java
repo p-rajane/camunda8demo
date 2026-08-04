@@ -11,5 +11,7 @@ public class User {
 
     private String name;
     private String city;
+    private String techStack;
     private String level;
+    private boolean bankAccountExist;
 }

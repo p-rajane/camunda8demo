@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0bc4jzj" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.43.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.8.0">
+  <decision id="TechStackDMN" name="Tech Stack">
+    <decisionTable id="DecisionTable_1n5ybm8">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>techStack</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1dn03rc">
+          <text>"Java Backend","Java FullStack","Python","Automation Tester",".NET Developer","Camunda BPM"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" name="resourceManagerEmail" typeRef="string">
+        <outputValues id="UnaryTests_0qk64c6">
+          <text>"abc@ltm.com","pqr@ltm.com","xyz@ltm.com"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1croh7z">
+        <inputEntry id="UnaryTests_1lhwlvc">
+          <text>"Java Backend"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ffpbww">
+          <text>"abc@ltm.com"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1rndpl6">
+        <inputEntry id="UnaryTests_1600wcw">
+          <text>"Java FullStack"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_003r2xl">
+          <text>"pqr@ltm.com"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1biilzh">
+        <inputEntry id="UnaryTests_1yg9sk2">
+          <text>"Camunda BPM"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_139qzv3">
+          <text>"xyz@ltm.com"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="Decision_0irwsos_di" dmnElementRef="TechStackDMN">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

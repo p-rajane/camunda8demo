@@ -1,0 +1,72 @@
+{
+  "components": [
+    {
+      "content": "<div>\n  <h1>Account Opening details of {{eachUser.name}}</h1>\n  <p>Please review employee information carefully.</p>\n</div>",
+      "type": "html",
+      "layout": {
+        "row": "Row_0mozniz",
+        "columns": null
+      },
+      "id": "Field_10zk9ve"
+    },
+    {
+      "label": "Adhar Number",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_09c1l5f",
+        "columns": null
+      },
+      "id": "Field_1phm628",
+      "key": "textfield_8gt9g"
+    },
+    {
+      "label": "PAN",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0bkzx35",
+        "columns": null
+      },
+      "id": "Field_15kk5st",
+      "key": "textfield_l0c6ck"
+    },
+    {
+      "label": "Address",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1cup7db",
+        "columns": null
+      },
+      "id": "Field_045826v",
+      "key": "textfield_44a18"
+    },
+    {
+      "label": "Nominee Details",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1l26b3h",
+        "columns": null
+      },
+      "id": "Field_11f6mkb",
+      "key": "textfield_u5yxrb"
+    },
+    {
+      "label": "Submit",
+      "action": "submit",
+      "type": "button",
+      "layout": {
+        "row": "Row_10mknjv",
+        "columns": null
+      },
+      "id": "Field_0k5dxi8"
+    }
+  ],
+  "type": "default",
+  "id": "bankAccountForm",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.43.1"
+  },
+  "schemaVersion": 19
+}

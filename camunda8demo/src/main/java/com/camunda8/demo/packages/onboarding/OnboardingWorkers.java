@@ -22,31 +22,57 @@ public class OnboardingWorkers {
     @JobWorker(type = "onboardingToSystem")
     public void onboardToSystem(final JobClient jobClient, final ActivatedJob activatedJob) {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
-        log.info("Onboarded to system, Employee Name == {}", variablesAsMap.get("name"));
+        Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
+        log.info("Onboarded to system, Employee Name == {}", eachUserMap.get("name"));
     }
 
     @JobWorker(type = "accountCreation")
     public void accountCreation(final JobClient jobClient, final ActivatedJob activatedJob) {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
-        log.info("Bank account created successfully for employee == {}", variablesAsMap.get("name"));
+        Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
+        if( !(boolean)eachUserMap.get("bankAccountExist") ) {
+            log.info("New Account created for == {}", eachUserMap.get("name"));
+        } else {
+            log.info("Existing Account updated with payroll team for employee == {}", eachUserMap.get("name"));
+        }
+        log.info("Bank account created successfully for employee == {}", eachUserMap.get("name"));
     }
 
     @JobWorker(type = "rmsPoolAllocation")
     public void rmsPoolAllocation(final JobClient jobClient, final ActivatedJob activatedJob) {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
-        log.info("Employee == {} Allocated to RMS pool.", variablesAsMap.get("name"));
+        Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
+        log.info("Employee == {} Allocated to RMS pool.", eachUserMap.get("name"));
+        try {
+            Thread.sleep(15000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @JobWorker(type = "projectAllocation")
-    public void projectAllocation(final JobClient jobClient, final ActivatedJob activatedJob) {
+    @JobWorker(type = "resourceManagerMailSender")
+    public void resourceManagerMailSender(final JobClient jobClient, final ActivatedJob activatedJob) {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
-        log.info("Employee == {} Allocated to Billable project.", variablesAsMap.get("name"));
+        Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
+        log.info("Email sent to == {} for employee == {} with tech stack == {}",
+                variablesAsMap.get("resManEmail"),
+                eachUserMap.get("name"),
+                eachUserMap.get("techStack"));
+    }
+
+    @JobWorker(type = "unbilledReminder")
+    public void unbilledReminder(final JobClient jobClient, final ActivatedJob activatedJob) {
+        Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
+        Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
+        log.info("Unbilled reminder sent to employee == {}, and account manager.",
+                eachUserMap.get("name"));
     }
 
     @JobWorker(type = "backgroundVerification")
     public void backgroundVerification(final JobClient jobClient, final ActivatedJob activatedJob) {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
-        log.info("Background verifications started for employee == {}.", variablesAsMap.get("name"));
+        Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
+        log.info("Background verifications started for employee == {}.", eachUserMap.get("name"));
         if(true) {
             throw new ZeebeBpmnError("VERIFICATION_FAILED", "Background verification failed.", Collections.emptyMap());
         }
@@ -55,7 +81,8 @@ public class OnboardingWorkers {
     @JobWorker(type = "offboarding")
     public void offboarding(final JobClient jobClient, final ActivatedJob activatedJob) {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
-        log.info("Employee == {} offboarded from system.", variablesAsMap.get("name"));
+        Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
+        log.info("Employee == {} offboarded from system.", eachUserMap.get("name"));
     }
 
     @JobWorker(type = "printTask")
