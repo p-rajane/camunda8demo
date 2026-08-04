@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Pramod Rajane",
+    "city": "Mumbai",
+    "techStack": "Java Backend",
+    "level": "P5",
+    "bankAccountExist": true
+  },
+  {
+    "name": "Ajit Sharma",
+    "city": "Pune",
+    "techStack": "Camunda BPM",
+    "level": "P2",
+    "bankAccountExist": false
+  }
+]
