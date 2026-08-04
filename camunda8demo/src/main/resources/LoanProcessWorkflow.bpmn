@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0nwqh1f" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.43.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.8.0">
+  <bpmn:collaboration id="Collaboration_01r3io1">
+    <bpmn:participant id="Loan_Process" name="Loan Process" processRef="LoanProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="LoanProcess" name="Loan Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_" name="Start">
+      <bpmn:outgoing>Flow_0d4br79</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0d4br79" sourceRef="StartEvent_" targetRef="Activity_CibilCheck" />
+    <bpmn:sequenceFlow id="Flow_0jt2izy" sourceRef="Activity_CibilCheck" targetRef="Activity_0yjnabh" />
+    <bpmn:sequenceFlow id="Flow_1qx5dqw" sourceRef="Gateway_02arvya" targetRef="Activity_ValidateDocument">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=age&gt;=18</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1i4yi5r" sourceRef="Gateway_02arvya" targetRef="Activity_HandleByBranchManager">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=age&lt;18</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1twy5n7" sourceRef="Activity_ValidateDocument" targetRef="Activity_LoanDecision" />
+    <bpmn:sequenceFlow id="Flow_17ekz81" sourceRef="Activity_LoanDecision" targetRef="Activity_Notification" />
+    <bpmn:sequenceFlow id="Flow_1v4v9zz" sourceRef="Activity_Notification" targetRef="EndEvent_" />
+    <bpmn:sequenceFlow id="Flow_0uj81m2" sourceRef="Activity_HandleByBranchManager" targetRef="Activity_LoanDecision" />
+    <bpmn:serviceTask id="Activity_CibilCheck" name="Age Check" zeebe:modelerTemplate="io.camunda.connectors.HttpJson.v2" zeebe:modelerTemplateVersion="12" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjAzMzUgOC45OTk5N0MxNy4wMzM1IDEzLjQ0NzUgMTMuNDI4MSAxNy4wNTI5IDguOTgwNjUgMTcuMDUyOUM0LjUzMzE2IDE3LjA1MjkgMC45Mjc3NjUgMTMuNDQ3NSAwLjkyNzc2NSA4Ljk5OTk3QzAuOTI3NzY1IDQuNTUyNDggNC41MzMxNiAwLjk0NzA4MyA4Ljk4MDY1IDAuOTQ3MDgzQzEzLjQyODEgMC45NDcwODMgMTcuMDMzNSA0LjU1MjQ4IDE3LjAzMzUgOC45OTk5N1oiIGZpbGw9IiM1MDU1NjIiLz4KPHBhdGggZD0iTTQuOTMxMjYgMTQuMTU3MUw2Ljc4MTA2IDMuNzE0NzFIMTAuMTM3NUMxMS4xOTE3IDMuNzE0NzEgMTEuOTgyNCAzLjk4MzIzIDEyLjUwOTUgNC41MjAyN0MxMy4wNDY1IDUuMDQ3MzYgMTMuMzE1IDUuNzMzNTggMTMuMzE1IDYuNTc4OTJDMTMuMzE1IDcuNDQ0MTQgMTMuMDcxNCA4LjE1NTIyIDEyLjU4NDEgOC43MTIxNUMxMi4xMDY3IDkuMjU5MTMgMTEuNDU1MyA5LjYzNzA1IDEwLjYyOTggOS44NDU5TDEyLjA2MTkgMTQuMTU3MUgxMC4zMzE1TDkuMDMzNjQgMTAuMDI0OUg3LjI0MzUxTDYuNTEyNTQgMTQuMTU3MUg0LjkzMTI2Wk03LjQ5NzExIDguNTkyODFIOS4yNDI0OEM5Ljk5ODMyIDguNTkyODEgMTAuNTkwMSA4LjQyMzc0IDExLjAxNzcgOC4wODU2MUMxMS40NTUzIDcuNzM3NTMgMTEuNjc0MSA3LjI2NTEzIDExLjY3NDEgNi42Njg0MkMxMS42NzQxIDYuMTkxMDYgMTEuNTI0OSA1LjgxODExIDExLjIyNjUgNS41NDk1OUMxMC45MjgyIDUuMjcxMTMgMTAuNDU1OCA1LjEzMTkgOS44MDkzNiA1LjEzMTlIOC4xMDg3NEw3LjQ5NzExIDguNTkyODFaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:http-json:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="noAuth" target="authentication.type" />
+          <zeebe:input source="GET" target="method" />
+          <zeebe:input source="https://fake-json-api.mock.beeceptor.com/users" target="url" />
+          <zeebe:input source="=false" target="storeResponse" />
+          <zeebe:input source="=20" target="connectionTimeoutInSeconds" />
+          <zeebe:input source="=20" target="readTimeoutInSeconds" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="elementTemplateVersion" value="12" />
+          <zeebe:header key="elementTemplateId" value="io.camunda.connectors.HttpJson.v2" />
+          <zeebe:header key="resultVariable" value="result" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0d4br79</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jt2izy</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="Gateway_02arvya">
+      <bpmn:incoming>Flow_1nb5gp1</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qx5dqw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1i4yi5r</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Activity_LoanDecision" name="Loan Decision">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1twy5n7</bpmn:incoming>
+      <bpmn:incoming>Flow_0uj81m2</bpmn:incoming>
+      <bpmn:outgoing>Flow_17ekz81</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_HandleByBranchManager" name="Handle by Branch Manager">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1i4yi5r</bpmn:incoming>
+      <bpmn:outgoing>Flow_0uj81m2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_ValidateDocument" name="Validate documents">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="validateDocument" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1qx5dqw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1twy5n7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sendTask id="Activity_Notification" name="Notification">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="notification" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17ekz81</bpmn:incoming>
+      <bpmn:outgoing>Flow_1v4v9zz</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_1nb5gp1" sourceRef="Activity_0yjnabh" targetRef="Gateway_02arvya" />
+    <bpmn:serviceTask id="Activity_0yjnabh" name="Validate Age Criteria">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="validateAgeCriteria" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0jt2izy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nb5gp1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_" name="End">
+      <bpmn:incoming>Flow_1v4v9zz</bpmn:incoming>
+      <bpmn:incoming>Flow_07jthtr</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="Activity_0f003x1" name="Manually Update Customer">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1gqqxsq</bpmn:incoming>
+      <bpmn:outgoing>Flow_07jthtr</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:boundaryEvent id="Event_089z663" attachedToRef="Activity_Notification">
+      <bpmn:outgoing>Flow_1gqqxsq</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_1ptl3n5" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_1gqqxsq" sourceRef="Event_089z663" targetRef="Activity_0f003x1" />
+    <bpmn:sequenceFlow id="Flow_07jthtr" sourceRef="Activity_0f003x1" targetRef="EndEvent_" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_01r3io1">
+      <bpmndi:BPMNShape id="Participant_1o3wbj2_di" bpmnElement="Loan_Process" isHorizontal="true">
+        <dc:Bounds x="120" y="70" width="1198" height="400" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_">
+        <dc:Bounds x="182" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="188" y="205" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1gb3849_di" bpmnElement="Activity_CibilCheck">
+        <dc:Bounds x="270" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_02arvya_di" bpmnElement="Gateway_02arvya" isMarkerVisible="true">
+        <dc:Bounds x="595" y="155" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nj80ro_di" bpmnElement="Activity_LoanDecision">
+        <dc:Bounds x="860" y="140" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rxpovg_di" bpmnElement="Activity_HandleByBranchManager">
+        <dc:Bounds x="700" y="250" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06b43zi_di" bpmnElement="Activity_ValidateDocument">
+        <dc:Bounds x="700" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_08d9xl0_di" bpmnElement="Activity_Notification">
+        <dc:Bounds x="1020" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1446o7z_di" bpmnElement="Activity_0yjnabh">
+        <dc:Bounds x="430" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_139xvfe_di" bpmnElement="EndEvent_">
+        <dc:Bounds x="1212" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1220" y="138" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0engf8h_di" bpmnElement="Activity_0f003x1">
+        <dc:Bounds x="1020" y="330" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1hqg3ey_di" bpmnElement="Event_089z663">
+        <dc:Bounds x="1052" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0d4br79_di" bpmnElement="Flow_0d4br79">
+        <di:waypoint x="218" y="180" />
+        <di:waypoint x="270" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jt2izy_di" bpmnElement="Flow_0jt2izy">
+        <di:waypoint x="370" y="180" />
+        <di:waypoint x="430" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1qx5dqw_di" bpmnElement="Flow_1qx5dqw">
+        <di:waypoint x="645" y="180" />
+        <di:waypoint x="700" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1i4yi5r_di" bpmnElement="Flow_1i4yi5r">
+        <di:waypoint x="620" y="205" />
+        <di:waypoint x="620" y="290" />
+        <di:waypoint x="700" y="290" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1twy5n7_di" bpmnElement="Flow_1twy5n7">
+        <di:waypoint x="800" y="180" />
+        <di:waypoint x="860" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17ekz81_di" bpmnElement="Flow_17ekz81">
+        <di:waypoint x="960" y="180" />
+        <di:waypoint x="1020" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1v4v9zz_di" bpmnElement="Flow_1v4v9zz">
+        <di:waypoint x="1120" y="180" />
+        <di:waypoint x="1212" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0uj81m2_di" bpmnElement="Flow_0uj81m2">
+        <di:waypoint x="800" y="290" />
+        <di:waypoint x="910" y="290" />
+        <di:waypoint x="910" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nb5gp1_di" bpmnElement="Flow_1nb5gp1">
+        <di:waypoint x="530" y="180" />
+        <di:waypoint x="595" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gqqxsq_di" bpmnElement="Flow_1gqqxsq">
+        <di:waypoint x="1070" y="238" />
+        <di:waypoint x="1070" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07jthtr_di" bpmnElement="Flow_07jthtr">
+        <di:waypoint x="1120" y="370" />
+        <di:waypoint x="1230" y="370" />
+        <di:waypoint x="1230" y="198" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

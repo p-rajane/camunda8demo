@@ -1,0 +1,33 @@
+{
+  "components": [
+    {
+      "label": "Input Json",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0hkjkm5",
+        "columns": null
+      },
+      "id": "Field_0isaj56",
+      "key": "input"
+    },
+    {
+      "label": "Submit",
+      "action": "submit",
+      "type": "button",
+      "layout": {
+        "row": "Row_013b4ol",
+        "columns": null
+      },
+      "id": "Field_1bxmr1z"
+    }
+  ],
+  "type": "default",
+  "id": "inputForm",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.43.1"
+  },
+  "schemaVersion": 19
+}

@@ -1,0 +1,96 @@
+{
+  "components": [
+    {
+      "content": "<div>\n  <h1>BGV Manual Verification for {{eachUser.name}}</h1>\n  <p>Please review employee information carefully.</p>\n</div>",
+      "type": "html",
+      "layout": {
+        "row": "Row_0jkilx1",
+        "columns": 11
+      },
+      "id": "Field_081jp5e",
+      "properties": {}
+    },
+    {
+      "label": "Scrutiny Check",
+      "values": [
+        {
+          "label": "Educational document",
+          "value": "eduDocs"
+        },
+        {
+          "label": "Experience letter",
+          "value": "expLetter"
+        },
+        {
+          "label": "Last 3 Salary slips",
+          "value": "salarySlips"
+        },
+        {
+          "label": "PF serivce history",
+          "value": "serviceHistory"
+        },
+        {
+          "label": "Third party agency validation",
+          "value": "thirdParty"
+        }
+      ],
+      "type": "checklist",
+      "layout": {
+        "row": "Row_1djnz2u",
+        "columns": 5
+      },
+      "id": "Field_05fr7tq",
+      "key": "checklist_zxc07a"
+    },
+    {
+      "label": "Findings",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_01bzwqf",
+        "columns": 9
+      },
+      "id": "Field_1s0wp0q",
+      "key": "textarea_iiecsq"
+    },
+    {
+      "label": "Radio group",
+      "values": [
+        {
+          "label": "Onboard",
+          "value": "onboard"
+        },
+        {
+          "label": "Offobard",
+          "value": "offboard"
+        }
+      ],
+      "type": "radio",
+      "layout": {
+        "row": "Row_07jye56",
+        "columns": 2
+      },
+      "id": "Field_0ka353o",
+      "key": "radio_decision",
+      "defaultValue": "onboard"
+    },
+    {
+      "label": "Submit",
+      "action": "submit",
+      "type": "button",
+      "layout": {
+        "row": "Row_15prx9f",
+        "columns": 2
+      },
+      "id": "Field_1apci4m"
+    }
+  ],
+  "type": "default",
+  "id": "offobardingForm",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.43.1"
+  },
+  "schemaVersion": 19
+}

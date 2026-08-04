@@ -22,6 +22,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+        <!-- Source: https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.14.0</version>
+            <scope>compile</scope>
+        </dependency>
 		<dependency>
 			<groupId>io.camunda</groupId>
 			<artifactId>zeebe-client-java</artifactId>
@@ -52,11 +59,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>io.camunda</groupId>
-			<artifactId>spring-zeebe-starter</artifactId>
-			<version>${zeebe.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>io.camunda</groupId>
+            <artifactId>spring-boot-starter-camunda-sdk</artifactId>
+            <version>8.7.10</version>
+        </dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

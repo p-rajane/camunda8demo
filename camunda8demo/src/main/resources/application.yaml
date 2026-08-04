@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+camunda:
+  client:
+    mode: selfManaged
+    zeebe:
+      grpc-address: http://localhost:26500/
+      rest-address: http://localhost:8080/v2/
+      defaults:
+        enabled: false
+
+zeebe:
+  client:
+    security:
+      plaintext: true
