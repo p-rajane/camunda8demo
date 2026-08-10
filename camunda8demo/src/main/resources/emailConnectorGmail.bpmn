@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_02sulr8" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.43.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.8.0">
+  <bpmn:collaboration id="Collaboration_1umgnzn">
+    <bpmn:participant id="Participant_1wkp0ry" processRef="SendGmail" />
+  </bpmn:collaboration>
+  <bpmn:process id="SendGmail" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_04gs79a</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_0gte4yr">
+      <bpmn:incoming>Flow_0vtibpo</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_008zi8c" name="Send Gmail" zeebe:modelerTemplate="io.camunda.connectors.email.v1" zeebe:modelerTemplateVersion="3" zeebe:modelerTemplateIcon="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzkwXzI0MjApIj4KPHBhdGggZD0iTTguMzM4MzUgOS45NTM2NUwxMC4zODk0IDEyLjAxMDRMOC4zMzI2MiAxNC4wNjcyTDkuMTQ2MTYgMTQuODc1TDEyLjAxMDcgMTIuMDEwNEw5LjE0NjE2IDkuMTQ1ODNMOC4zMzgzNSA5Ljk1MzY1WiIgZmlsbD0iYmxhY2siLz4KPHBhdGggZD0iTTEyLjM0ODggOS45NTM2NUwxNC4zOTk4IDEyLjAxMDRMMTIuMzQzIDE0LjA2NzJMMTMuMTU2NiAxNC44NzVMMTYuMDIxMiAxMi4wMTA0TDEzLjE1NjYgOS4xNDU4M0wxMi4zNDg4IDkuOTUzNjVaIiBmaWxsPSJibGFjayIvPgo8cGF0aCBkPSJNMy45NzIgMTEuNDM3NUgxLjEyNTMzVjIuNzkyMTlMNy42NzM3NiA3LjMyMzk2QzcuNzY5NjcgNy4zOTA0OSA3Ljg4MzYgNy40MjYxNCA4LjAwMDMyIDcuNDI2MTRDOC4xMTcwNSA3LjQyNjE0IDguMjMwOTggNy4zOTA0OSA4LjMyNjg5IDcuMzIzOTZMMTQuODc1MyAyLjc5MjE5VjhIMTYuMDIxMlYyLjI3MDgzQzE2LjAyMTIgMS45NjY5NCAxNS45MDA0IDEuNjc1NDkgMTUuNjg1NiAxLjQ2MDYxQzE1LjQ3MDcgMS4yNDU3MiAxNS4xNzkyIDEuMTI1IDE0Ljg3NTMgMS4xMjVIMS4xMjUzM0MwLjgyMTQzMiAxLjEyNSAwLjUyOTk4NCAxLjI0NTcyIDAuMzE1MDk5IDEuNDYwNjFDMC4xMDAyMTQgMS42NzU0OSAtMC4wMjA1MDc4IDEuOTY2OTQgLTAuMDIwNTA3OCAyLjI3MDgzVjExLjQzNzVDLTAuMDIwNTA3OCAxMS43NDE0IDAuMTAwMjE0IDEyLjAzMjggMC4zMTUwOTkgMTIuMjQ3N0MwLjUyOTk4NCAxMi40NjI2IDAuODIxNDMyIDEyLjU4MzMgMS4xMjUzMyAxMi41ODMzSDMuOTcyVjExLjQzNzVaTTEzLjYxNDkgMi4yNzA4M0w4LjAwMDMyIDYuMTU1MjFMMi4zODU3NCAyLjI3MDgzSDEzLjYxNDlaIiBmaWxsPSIjRkM1RDBEIi8+CjxwYXRoIGQ9Ik00LjI4MjEgOS45NTM2NUw2LjMzMzE0IDEyLjAxMDRMNC4yNzYzNyAxNC4wNjcyTDUuMDg5OTEgMTQuODc1TDcuOTU0NDkgMTIuMDEwNEw1LjA4OTkxIDkuMTQ1ODNMNC4yODIxIDkuOTUzNjVaIiBmaWxsPSJibGFjayIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzkwXzI0MjAiPgo8cmVjdCB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="io.camunda:email:1" retries="3" />
+        <zeebe:ioMapping>
+          <zeebe:input source="simple" target="authentication.type" />
+          <zeebe:input source="pramod.rajane" target="authentication.username" />
+          <zeebe:input source="yhshbhahhpmroykq" target="authentication.password" />
+          <zeebe:input source="smtp" target="protocol" />
+          <zeebe:input source="smtp.gmail.com" target="data.smtpConfig.smtpHost" />
+          <zeebe:input source="=587" target="data.smtpConfig.smtpPort" />
+          <zeebe:input source="TLS" target="data.smtpConfig.smtpCryptographicProtocol" />
+          <zeebe:input source="sendEmailSmtp" target="data.smtpActionDiscriminator" />
+          <zeebe:input source="=&#34;pramod.rajane@gmail.com&#34;" target="data.smtpAction.from" />
+          <zeebe:input source="=&#34;pramod.rajane@ltm.com&#34;" target="data.smtpAction.to" />
+          <zeebe:input source="Test mail for camunda connector" target="data.smtpAction.subject" />
+          <zeebe:input source="HTML" target="data.smtpAction.contentType" />
+          <zeebe:input source="&#60;!DOCTYPE html&#62;&#10;&#60;html lang=&#34;en&#34;&#62;&#10;&#60;head&#62;&#10;    &#60;meta charset=&#34;utf-8&#34;&#62;&#10;    &#60;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1.0&#34;&#62;&#10;    &#60;meta http-equiv=&#34;X-UA-Compatible&#34; content=&#34;IE=edge&#34;&#62;&#10;    &#60;title&#62;Welcome to Our Community!&#60;/title&#62;&#10;    &#60;style type=&#34;text/css&#34;&#62;&#10;        /* Client-specific resets */&#10;        html, body { margin: 0 !important; padding: 0 !important; height: 100% !important; width: 100% !important; background-color: #f4f6f8; font-family: &#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif; }&#10;        table, td { mso-table-lspace: 0pt !important; mso-table-rspace: 0pt !important; }&#10;        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }&#10;        &#10;        /* Mobile responsive adjustments */&#10;        @media screen and (max-width: 600px) {&#10;            .email-container { width: 100% !important; max-width: 100% !important; }&#10;            .fluid { max-width: 100% !important; height: auto !important; }&#10;            .button-td { width: 100% !important; text-align: center !important; }&#10;            .button-a { width: 100% !important; box-sizing: border-box !important; }&#10;        }&#10;    &#60;/style&#62;&#10;&#60;/head&#62;&#10;&#60;body style=&#34;margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f4f6f8;&#34;&#62;&#10;    &#60;center style=&#34;width: 100%; background-color: #f4f6f8;&#34;&#62;&#10;        &#60;!-- Container Table --&#62;&#10;        &#60;table role=&#34;presentation&#34; border=&#34;0&#34; cellpadding=&#34;0&#34; cellspacing=&#34;0&#34; width=&#34;100%&#34; style=&#34;background-color: #f4f6f8;&#34;&#62;&#10;            &#60;tr&#62;&#10;                &#60;td align=&#34;center&#34; valign=&#34;top&#34; style=&#34;padding: 40px 10px;&#34;&#62;&#10;                    &#10;                    &#60;!-- Email Content Area --&#62;&#10;                    &#60;table role=&#34;presentation&#34; border=&#34;0&#34; cellpadding=&#34;0&#34; cellspacing=&#34;0&#34; width=&#34;600&#34; class=&#34;email-container&#34; style=&#34;max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);&#34;&#62;&#10;                 &#10;                                         &#10;                        &#60;!-- Main Body Text Section --&#62;&#10;                        &#60;tr&#62;&#10;                            &#60;td style=&#34;padding: 20px 40px; text-align: left;&#34;&#62;&#10;                                &#60;h1 style=&#34;margin: 0 0 16px 0; font-size: 24px; line-height: 30px; color: #1a1a1a; font-weight: 700;&#34;&#62;&#10;                                    Glad to have you with us, Pramod Rajane ! 👋&#10;                                &#60;/h1&#62;&#10;                                &#60;p style=&#34;margin: 0 0 20px 0; font-size: 16px; line-height: 24px; color: #4a4a4a;&#34;&#62;&#10;                                    Thank you for signing up! We are thrilled to welcome you to our community. You now have full access to our platform tools, resources, and premium content.&#10;                                &#60;/p&#62;&#10;                                &#60;p style=&#34;margin: 0 0 30px 0; font-size: 16px; line-height: 24px; color: #4a4a4a;&#34;&#62;&#10;                                    To get started and make the most out of your account, click the button below to complete your profile setup.&#10;                                &#60;/p&#62;&#10;                            &#60;/td&#62;&#10;                        &#60;/tr&#62;&#10;                        &#10;                        &#60;!-- Call To Action Button Section --&#62;&#10;                        &#60;tr&#62;&#10;                            &#60;td align=&#34;center&#34; style=&#34;padding: 0 40px 40px 40px;&#34;&#62;&#10;                                &#60;table role=&#34;presentation&#34; border=&#34;0&#34; cellpadding=&#34;0&#34; cellspacing=&#34;0&#34; style=&#34;margin: auto;&#34;&#62;&#10;                                    &#60;tr&#62;&#10;                                        &#60;td class=&#34;button-td&#34; style=&#34;border-radius: 4px; background-color: #007bff; text-align: center;&#34;&#62;&#10;                                            &#60;a class=&#34;button-a&#34; href=&#34;https://yourwebsite.com&#34; style=&#34;background: #007bff; border: 1px solid #007bff; font-family: sans-serif; font-size: 16px; line-height: 15px; text-decoration: none; padding: 15px 30px; color: #ffffff; display: block; border-radius: 4px; font-weight: bold;&#34;&#62;&#10;                                                Get Started Now&#10;                                            &#60;/a&#62;&#10;                                        &#60;/td&#62;&#10;                                    &#60;/tr&#62;&#10;                                &#60;/table&#62;&#10;                            &#60;/td&#62;&#10;                        &#60;/tr&#62;&#10;                        &#10;                        &#60;!-- Footer Section --&#62;&#10;                        &#60;tr&#62;&#10;                            &#60;td style=&#34;padding: 40px; background-color: #fafbfc; border-top: 1px solid #eeeeee; text-align: center;&#34;&#62;&#10;                                &#60;p style=&#34;margin: 0 0 10px 0; font-size: 14px; line-height: 21px; color: #777777;&#34;&#62;&#10;                                    You received this email because you registered an account on our website.&#10;                                &#60;/p&#62;&#10;                                &#60;p style=&#34;margin: 0 0 0 0; font-size: 14px; line-height: 21px; color: #777777;&#34;&#62;&#10;                                    &#60;a href=&#34;https://yourwebsite.com&#34; style=&#34;color: #007bff; text-decoration: underline;&#34;&#62;Privacy Policy&#60;/a&#62; &#38;nbsp;|&#38;nbsp; &#10;                                    &#60;a href=&#34;https://yourwebsite.com&#34; style=&#34;color: #007bff; text-decoration: underline;&#34;&#62;Unsubscribe&#60;/a&#62;&#10;                                &#60;/p&#62;&#10;                            &#60;/td&#62;&#10;                        &#60;/tr&#62;&#10;                        &#10;                    &#60;/table&#62;&#10;                    &#10;                &#60;/td&#62;&#10;            &#60;/tr&#62;&#10;        &#60;/table&#62;&#10;    &#60;/center&#62;&#10;&#60;/body&#62;&#10;&#60;/html&#62;" target="data.smtpAction.htmlBody" />
+        </zeebe:ioMapping>
+        <zeebe:taskHeaders>
+          <zeebe:header key="elementTemplateVersion" value="3" />
+          <zeebe:header key="elementTemplateId" value="io.camunda.connectors.email.v1" />
+          <zeebe:header key="retryBackoff" value="PT0S" />
+        </zeebe:taskHeaders>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04gs79a</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vtibpo</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_04gs79a" sourceRef="StartEvent_1" targetRef="Activity_008zi8c" />
+    <bpmn:sequenceFlow id="Flow_0vtibpo" sourceRef="Activity_008zi8c" targetRef="Event_0gte4yr" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1umgnzn">
+      <bpmndi:BPMNShape id="Participant_1wkp0ry_di" bpmnElement="Participant_1wkp0ry" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="600" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="242" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0gte4yr_di" bpmnElement="Event_0gte4yr">
+        <dc:Bounds x="482" y="172" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rm4rpj_di" bpmnElement="Activity_008zi8c">
+        <dc:Bounds x="330" y="150" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_04gs79a_di" bpmnElement="Flow_04gs79a">
+        <di:waypoint x="278" y="190" />
+        <di:waypoint x="330" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vtibpo_di" bpmnElement="Flow_0vtibpo">
+        <di:waypoint x="430" y="190" />
+        <di:waypoint x="482" y="190" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -50,6 +50,7 @@ public class RestController {
       Map<String, Object> variables = new HashMap<>();
       variables.put("list", userList);
 
+
       client.newCreateInstanceCommand()
               .bpmnProcessId("MainProcess")
               .latestVersion()
