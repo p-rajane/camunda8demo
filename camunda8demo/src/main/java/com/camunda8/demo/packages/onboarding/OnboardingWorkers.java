@@ -3,8 +3,8 @@ package com.camunda8.demo.packages.onboarding;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
 import io.camunda.zeebe.client.api.worker.JobClient;
+/*import io.camunda.zeebe.spring.client.exception.ZeebeBpmnError;*/
 import io.camunda.zeebe.spring.client.annotation.JobWorker;
-import io.camunda.zeebe.spring.client.exception.ZeebeBpmnError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,6 @@ public class OnboardingWorkers {
     @Autowired
     ZeebeClient zeebeClient;
 
-    @JobWorker(type = "onboardingToSystem")
     public void onboardToSystem(final JobClient jobClient, final ActivatedJob activatedJob) {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
         Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
@@ -73,9 +72,9 @@ public class OnboardingWorkers {
         Map<String, Object> variablesAsMap = activatedJob.getVariablesAsMap();
         Map<String, Object> eachUserMap = (Map<String, Object>) variablesAsMap.get("eachUser");
         log.info("Background verifications started for employee == {}.", eachUserMap.get("name"));
-        if(true) {
+        /*if(true) {
             throw new ZeebeBpmnError("VERIFICATION_FAILED", "Background verification failed.", Collections.emptyMap());
-        }
+        }*/
     }
 
     @JobWorker(type = "offboarding")

@@ -11,7 +11,7 @@ camunda:
     zeebe:
       grpc-address: http://localhost:26500/
       rest-address: http://localhost:8080/v2/
-      defaults:
+      defaults: 
         enabled: false
 
 zeebe:

@@ -10,7 +10,6 @@ import java.util.Map;
 @Component
 public class ValidateAgeCriteria {
 
-    @JobWorker(type = "validateAgeCriteria")
     public Map<String, Object> validateAgeCriteria(final JobClient jobClient, final ActivatedJob activatedJob) {
         return Map.of("age", 19);
     }
