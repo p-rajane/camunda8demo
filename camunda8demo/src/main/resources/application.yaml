@@ -14,6 +14,7 @@ camunda:
       defaults: 
         enabled: false
 
+
 zeebe:
   client:
     security:

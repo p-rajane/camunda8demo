@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1r933mr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.43.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.8.0">
+  <bpmn:collaboration id="Collaboration_07xnyne">
+    <bpmn:participant id="Participant_01juoni" name="Adhoc Subprocess" processRef="addHocSubprocess" />
+  </bpmn:collaboration>
+  <bpmn:process id="addHocSubprocess" name="Adhoc Subrocess" isExecutable="true">
+    <bpmn:startEvent id="Event_1tni1od">
+      <bpmn:outgoing>Flow_1p9s76o</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1vxq7ef">
+      <bpmn:incoming>Flow_1mldlln</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:adHocSubProcess id="Activity_1r3c95s">
+      <bpmn:incoming>Flow_1p9s76o</bpmn:incoming>
+      <bpmn:outgoing>Flow_1mldlln</bpmn:outgoing>
+      <bpmn:serviceTask id="Activity_1jlynn4" name="Assign Laptop">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="task1" />
+        </bpmn:extensionElements>
+      </bpmn:serviceTask>
+      <bpmn:serviceTask id="Activity_0irjp7n" name="Create Email">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="task2" />
+        </bpmn:extensionElements>
+      </bpmn:serviceTask>
+      <bpmn:serviceTask id="Activity_0na399z" name="Assign Pool Manager">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="task3" />
+        </bpmn:extensionElements>
+      </bpmn:serviceTask>
+      <bpmn:serviceTask id="Activity_0v9uqjp" name="Onboard to payroll system">
+        <bpmn:extensionElements>
+          <zeebe:taskDefinition type="task4" />
+        </bpmn:extensionElements>
+      </bpmn:serviceTask>
+    </bpmn:adHocSubProcess>
+    <bpmn:sequenceFlow id="Flow_1p9s76o" sourceRef="Event_1tni1od" targetRef="Activity_1r3c95s" />
+    <bpmn:sequenceFlow id="Flow_1mldlln" sourceRef="Activity_1r3c95s" targetRef="Event_1vxq7ef" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_07xnyne">
+      <bpmndi:BPMNShape id="Participant_01juoni_di" bpmnElement="Participant_01juoni" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="660" height="320" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1tni1od_di" bpmnElement="Event_1tni1od">
+        <dc:Bounds x="212" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1vxq7ef_di" bpmnElement="Event_1vxq7ef">
+        <dc:Bounds x="762" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1cd5i47_di" bpmnElement="Activity_1r3c95s" isExpanded="true">
+        <dc:Bounds x="330" y="100" width="350" height="280" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1iu6vop_di" bpmnElement="Activity_1jlynn4">
+        <dc:Bounds x="360" y="120" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_013ewcq_di" bpmnElement="Activity_0irjp7n">
+        <dc:Bounds x="530" y="120" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0w8zya6_di" bpmnElement="Activity_0na399z">
+        <dc:Bounds x="360" y="250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0s8aqgq_di" bpmnElement="Activity_0v9uqjp">
+        <dc:Bounds x="530" y="250" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1p9s76o_di" bpmnElement="Flow_1p9s76o">
+        <di:waypoint x="248" y="240" />
+        <di:waypoint x="330" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1mldlln_di" bpmnElement="Flow_1mldlln">
+        <di:waypoint x="680" y="240" />
+        <di:waypoint x="762" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
