@@ -1,0 +1,91 @@
+# Camunda 8.10.8 - local Minikube development
+# Helm chart: camunda/camunda-platform 15.4.1
+# This profile deploys the Orchestration Cluster (Zeebe, Operate,
+# Tasklist, Admin UI) and Connectors with Basic authentication + file H2.
+#
+# IMPORTANT:
+# - H2 is for local development only.
+# - Keep exactly one broker, partition and replication factor.
+# - Management Identity (the separate 8.10 management-plane service) is
+#   intentionally disabled. The integrated Admin UI is available at /admin.
+#   Management Identity requires OIDC/Keycloak and its own PostgreSQL DB;
+#   it is not provided by this H2 + Basic-auth quick-install profile.
+
+global:
+  topology:
+    mode: combined
+  security:
+    authentication:
+      method: basic
+  identity:
+    auth:
+      enabled: false
+
+# Separate Management Identity service is not part of the H2 quick-install.
+identity:
+  enabled: false
+
+# Web Modeler / Console management plane not required for this profile.
+camundaHub:
+  enabled: false
+
+# Optimize requires Elasticsearch/OpenSearch and is not supported by this H2 profile.
+optimize:
+  enabled: false
+
+orchestration:
+  enabled: true
+  extraConfiguration:
+    - file: custom-security.yaml
+      content: |
+        camunda:
+          security:
+            initialization:
+              users:
+                - username: localadmin
+                  password: LocalDev@123
+                  name: Local Administrator
+                  email: admin@localhost
+              defaultRoles:
+                admin:
+                  users:
+                    - localadmin
+
+  # H2 requires this exact single-node topology.
+  clusterSize: "1"
+  partitionCount: "1"
+  replicationFactor: "1"
+
+  # Enable the RDBMS exporter and use persistent file-based H2.
+  exporters:
+    rdbms:
+      enabled: true
+
+  data:
+    secondaryStorage:
+      type: rdbms
+      rdbms:
+        url: "jdbc:h2:file:/usr/local/camunda/data/h2db"
+        username: "sa"
+
+  # Minikube default StorageClass dynamically provisions this PVC.
+  pvcSize: 10Gi
+
+  resources:
+    requests:
+      cpu: "1000m"
+      memory: "1500Mi"
+    limits:
+      cpu: "2000m"
+      memory: "3Gi"
+
+connectors:
+  enabled: true
+  replicas: 1
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "768Mi"
+    limits:
+      cpu: "1000m"
+      memory: "1536Mi"
